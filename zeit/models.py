@@ -8,5 +8,5 @@ class Day:
 
     @property
     def minus_hours(self):
-        if self.date.isoweekday() in [6]:
+        if self.date.isoweekday() in [6, 7]:
             return datetime.timedelta()
