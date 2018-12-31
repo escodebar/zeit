@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def december(tmp_path):
     _file = tmp_path / "2018-12"
-    _file.write_text("\n")
+    _file.write_text("\n\n")
     yield file_reader(_file)
 
 
@@ -17,5 +17,18 @@ def saturday(december):
     yield saturday
 
 
+@pytest.fixture
+def sunday(december):
+    _ = next(december)
+    sunday = next(december)
+    assert 7 == sunday.date.isoweekday()
+    yield sunday
+
+
 def test_saturday_does_not_count_against_minus_hours(saturday):
     assert datetime.timedelta() == saturday.minus_hours
+
+
+@pytest.mark.xfail
+def test_sunday_does_not_count_against_minus_hours(sunday):
+    assert datetime.timedelta() == sunday.minus_hours
