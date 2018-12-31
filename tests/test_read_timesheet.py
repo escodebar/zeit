@@ -17,7 +17,6 @@ def test_file_reader_generates_day_objects(december_file):
     assert isinstance(day, Day)
 
 
-@pytest.mark.xfail
 def test_day_of_the_month_is_given_by_line_number(december_file):
     test_data_reader = file_reader(december_file)
     assert datetime.date(2018, 12, 1) == next(test_data_reader).date
