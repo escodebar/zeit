@@ -44,3 +44,9 @@ def test_sunday_does_not_count_against_minus_hours(sunday):
 
 def test_weekdays_have_working_hours(monday):
     assert datetime.timedelta(hours=8, minutes=33) == monday.working_hours
+
+
+@pytest.mark.xfail
+def test_weekdays_contribute_minus_hours(monday, monkeypatch):
+    monkeypatch.setenv("ZEIT_SHIFT_LENGTH", "9")
+    assert datetime.timedelta(minutes=-27) == monday.minus_hours
