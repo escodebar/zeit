@@ -24,8 +24,12 @@ class Day:
         return datetime.timedelta(hours=float(os.environ.get("ZEIT_SHIFT_LENGTH", 8.4)))
 
     @property
+    def is_weekend(self):
+        return self.date.isoweekday() in [6, 7]
+
+    @property
     def minus_hours(self):
-        if self.date.isoweekday() in [6, 7]:
+        if self.is_weekend:
             return datetime.timedelta()
 
         time_difference = self.working_hours - self.expected_shift_length
@@ -37,7 +41,7 @@ class Day:
 
     @property
     def overtime(self):
-        if self.date.isoweekday() in [6, 7]:
+        if self.is_weekend:
             return self.working_hours
 
         return self.working_hours - self.expected_shift_length
