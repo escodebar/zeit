@@ -1,4 +1,5 @@
 import datetime
+import os
 import time
 
 
@@ -19,9 +20,15 @@ class Day:
             return datetime.timedelta()
 
     @property
+    def expected_shift_length(self):
+        return datetime.timedelta(hours=float(os.environ.get("ZEIT_SHIFT_LENGTH", 8.4)))
+
+    @property
     def minus_hours(self):
         if self.date.isoweekday() in [6, 7]:
             return datetime.timedelta()
+
+        return self.working_hours - self.expected_shift_length
 
     @property
     def working_hours(self):
