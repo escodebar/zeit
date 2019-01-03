@@ -60,7 +60,6 @@ def test_weekdays_contribute_no_negative_minus_hours(monday, monkeypatch):
     assert datetime.timedelta() == monday.minus_hours
 
 
-@pytest.mark.xfail
 def test_weekdays_overtime(monday, monkeypatch):
     monkeypatch.setenv("ZEIT_SHIFT_LENGTH", "8")
     assert datetime.timedelta(minutes=33) == monday.overtime

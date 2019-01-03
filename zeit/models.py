@@ -36,6 +36,10 @@ class Day:
         return datetime.timedelta()
 
     @property
+    def overtime(self):
+        return self.working_hours - self.expected_shift_length
+
+    @property
     def working_hours(self):
         shifts = [Day.parse_shift(shift) for shift in self.data.split("\t")]
         return sum(shifts, datetime.timedelta())
