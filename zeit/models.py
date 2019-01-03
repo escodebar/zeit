@@ -37,6 +37,9 @@ class Day:
 
     @property
     def overtime(self):
+        if self.date.isoweekday() in [6, 7]:
+            return self.working_hours
+
         return self.working_hours - self.expected_shift_length
 
     @property

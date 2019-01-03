@@ -65,6 +65,5 @@ def test_weekdays_overtime(monday, monkeypatch):
     assert datetime.timedelta(minutes=33) == monday.overtime
 
 
-@pytest.mark.xfail
 def test_weekends_overtime(sunday):
     assert datetime.timedelta(hours=4) == sunday.overtime
