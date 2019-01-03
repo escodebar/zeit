@@ -28,7 +28,12 @@ class Day:
         if self.date.isoweekday() in [6, 7]:
             return datetime.timedelta()
 
-        return self.working_hours - self.expected_shift_length
+        time_difference = self.working_hours - self.expected_shift_length
+
+        if time_difference < datetime.timedelta():
+            return time_difference
+
+        return datetime.timedelta()
 
     @property
     def working_hours(self):
