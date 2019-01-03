@@ -42,6 +42,5 @@ def test_sunday_does_not_count_against_minus_hours(sunday):
     assert datetime.timedelta() == sunday.minus_hours
 
 
-@pytest.mark.xfail
 def test_weekdays_have_working_hours(monday):
     assert datetime.timedelta(hours=8, minutes=33) == monday.working_hours
