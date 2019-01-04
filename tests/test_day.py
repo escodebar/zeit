@@ -69,7 +69,6 @@ def test_weekends_overtime(sunday):
     assert datetime.timedelta(hours=4) == sunday.overtime
 
 
-@pytest.mark.xfail
 def test_minus_hours_is_not_negative_overtime(monday, monkeypatch):
     monkeypatch.setenv("ZEIT_SHIFT_LENGTH", "9")
     assert datetime.timedelta() == monday.overtime

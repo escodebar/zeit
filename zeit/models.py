@@ -44,7 +44,12 @@ class Day:
         if self.is_weekend:
             return self.working_hours
 
-        return self.working_hours - self.expected_shift_length
+        time_difference = self.working_hours - self.expected_shift_length
+
+        if time_difference > datetime.timedelta():
+            return self.working_hours - self.expected_shift_length
+
+        return datetime.timedelta()
 
     @property
     def working_hours(self):
