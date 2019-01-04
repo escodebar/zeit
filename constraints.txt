@@ -39,6 +39,7 @@ ptyprocess==0.6.0
 py==1.7.0
 pytest==4.0.2
 python-dateutil==2.7.5
+python-dotenv==0.10.1
 pytz==2018.7
 pyzmq==17.1.2
 qtconsole==4.4.3
