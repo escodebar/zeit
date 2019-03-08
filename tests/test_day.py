@@ -6,7 +6,9 @@ import pytest
 @pytest.fixture
 def december(tmp_path):
     _file = tmp_path / "2018-12"
-    _file.write_text("\n".join(["", "08:00-12:00", "08:00-12:00\t13:00-17:33"]))
+    _file.write_text(
+        "\n".join(["", "08:00-12:00", "08:00-12:00\t13:00-17:33\tStandard Shift"])
+    )
     yield file_reader(_file)
 
 
@@ -72,3 +74,8 @@ def test_weekends_overtime(sunday):
 def test_minus_hours_is_not_negative_overtime(monday, monkeypatch):
     monkeypatch.setenv("ZEIT_SHIFT_LENGTH", "9")
     assert datetime.timedelta() == monday.overtime
+
+
+@pytest.mark.xfail
+def test_remark(monday):
+    assert "Standard Shift" == monday.remark
