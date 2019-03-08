@@ -52,6 +52,17 @@ class Day:
         return datetime.timedelta()
 
     @property
+    def remark(self):
+        data = self.data.split("\t")[-1]
+
+        try:
+            [time.strptime(_, "%H:%M") for _ in data.split("-")]
+        except ValueError:
+            return data
+
+        return ""
+
+    @property
     def working_hours(self):
         shifts = [Day.parse_shift(shift) for shift in self.data.split("\t")]
         return sum(shifts, datetime.timedelta())

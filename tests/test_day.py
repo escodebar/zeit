@@ -76,6 +76,5 @@ def test_minus_hours_is_not_negative_overtime(monday, monkeypatch):
     assert datetime.timedelta() == monday.overtime
 
 
-@pytest.mark.xfail
 def test_remark(monday):
     assert "Standard Shift" == monday.remark
