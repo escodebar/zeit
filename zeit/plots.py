@@ -3,7 +3,6 @@ from plotly.graph_objs import Figure
 from plotly.graph_objs import Histogram
 from plotly.graph_objs import Layout
 from plotly.graph_objs import Scatter
-from plotly.offline import iplot
 import datetime
 
 
@@ -19,15 +18,23 @@ def differences(days):
             y=[day.minus_hours.total_seconds() / 3600 for day in days],
             name="minus hours",
         ),
+        Bar(
+            x=[day.date for day in days],
+            y=[0 for day in days],
+            showlegend=False,
+            text=[day.remark for day in days],
+            textposition="outside",
+        ),
     ]
 
     layout = Layout(
         title="Overtime / Minus hours",
+        barmode="stack",
         xaxis={"title": "Date"},
         yaxis={"title": "Worktime difference (in Hours)"},
     )
 
-    iplot(Figure(data=data, layout=layout))
+    return dict(data=data, layout=layout)
 
 
 def histograms(days):
@@ -61,7 +68,7 @@ def histograms(days):
         barmode="overlay",
     )
 
-    iplot(Figure(data=data, layout=layout))
+    return dict(data=data, layout=layout)
 
 
 def integrated(days):
@@ -76,6 +83,7 @@ def integrated(days):
         Scatter(
             x=[day.date for day in days],
             y=[total.total_seconds() / 3600 for total in integrated],
+            name="overtime / minus hours",
         )
     ]
 
@@ -85,4 +93,4 @@ def integrated(days):
         yaxis={"title": "Integrated time difference (in hours)"},
     )
 
-    iplot(Figure(data=data, layout=layout))
+    return dict(data=data, layout=layout)
