@@ -17,9 +17,7 @@ The file's name needs to be formatted with the year and the month of the data it
 Each line in the text file then contains the working time for the day of that month.
 Shifts are split with tabs, text may also be included.
 
-### Example
-
-For instance, for January 2019 one creates a text file `2019-01`.
+*Example* For instance, for January 2019 one creates a text file `2019-01`.
 The content could looks as follows:
 ```
 08:00-16:33	Holidays
@@ -53,4 +51,9 @@ Compensation
 08:30-11:50	12:30-18:00	18:50-20:15
 08:10-11:50	13:10-18:00
 08:00-16:33	Holidays
+```
+
+Once files are provided, run the `zeit` module using python:
+```shell
+$ python -m zeit --data-path /path/to/data/files
 ```
