@@ -57,3 +57,9 @@ Once files are provided, run the `zeit` module using python:
 ```shell
 $ python -m zeit --data-path /path/to/data/files
 ```
+
+## Configuration
+
+8 hours 24 minutes of working time per day are used as default.
+This can be changed by setting the `ZEIT_SHIFT_LENGTH` environment variable.
+The configuration is also read from a local `.env` file.
