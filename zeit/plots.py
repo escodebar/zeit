@@ -11,19 +11,14 @@ def differences(days):
         Bar(
             x=[day.date for day in days],
             y=[day.overtime.total_seconds() / 3600 for day in days],
+            text=[day.remark for day in days],
             name="overtime",
         ),
         Bar(
             x=[day.date for day in days],
             y=[day.minus_hours.total_seconds() / 3600 for day in days],
-            name="minus hours",
-        ),
-        Bar(
-            x=[day.date for day in days],
-            y=[0 for day in days],
-            showlegend=False,
             text=[day.remark for day in days],
-            textposition="outside",
+            name="minus hours",
         ),
     ]
 
