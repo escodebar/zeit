@@ -41,7 +41,7 @@ def histograms(days):
                 if day.overtime > datetime.timedelta()
             ],
             name="overtime",
-            xbins={"size": 0.25},
+            xbins={"size": 1},
             opacity=0.75,
         ),
         Histogram(
@@ -51,7 +51,7 @@ def histograms(days):
                 if day.minus_hours < datetime.timedelta()
             ],
             name="minus hours",
-            xbins={"size": 0.25},
+            xbins={"size": 1},
             opacity=0.75,
         ),
     ]
